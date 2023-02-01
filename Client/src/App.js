@@ -1,8 +1,8 @@
-import * as React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import Home from './Components/Home/Home';
-import SharedLayout from './Components/SharedLayout/SharedLayout';
-import Users from './Components/Users/Users';
+import * as React from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Home from "./Components/Home/Home";
+import SharedLayout from "./Components/SharedLayout/SharedLayout";
+import Users from "./Components/Users/Users";
 
 function App() {
   const [inputs, setInputs] = React.useState({
@@ -22,21 +22,38 @@ function App() {
 
     console.log(inputs);
   };
-    const formSubmit = (event) => {
+  const formSubmit = (event) => {
     event.preventDefault();
     console.log("Form Submitted", inputs);
+    const afterSubmit = {
+      name: "",
+      email: "",
+      sector: "",
+      isAgreed: false,
+    };
+    setInputs(afterSubmit);
+    alert("Form Submitted Successfully");
   };
   return (
     <>
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<SharedLayout  />}>
-        <Route index element={<Home inputs={inputs} handleChange={handleChange} formSubmit={formSubmit}/>} />
-        <Route path="/users" element={<Users />} />
-        <Route path="*" element={<h1>404 Not Found</h1>} />
-        </Route>
-      </Routes>
-    </BrowserRouter>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<SharedLayout />}>
+            <Route
+              index
+              element={
+                <Home
+                  inputs={inputs}
+                  handleChange={handleChange}
+                  formSubmit={formSubmit}
+                />
+              }
+            />
+            <Route path="/users" element={<Users />} />
+            <Route path="*" element={<h1>404 Not Found</h1>} />
+          </Route>
+        </Routes>
+      </BrowserRouter>
     </>
   );
 }

@@ -9,10 +9,10 @@ import Checkbox from "@mui/material/Checkbox";
 import MenuItem from "@mui/material/MenuItem";
 import FormHelperText from "@mui/material/FormHelperText";
 import { Button, FormGroup, InputLabel } from "@mui/material";
-const Form = ({inputs, handleChange, formSubmit}) => {
+const Form = ({ inputs, handleChange, formSubmit }) => {
   return (
     <>
-    <Box
+      <Box
         sx={{
           width: "80%",
           maxWidth: "600px",
@@ -74,14 +74,14 @@ const Form = ({inputs, handleChange, formSubmit}) => {
                 ))}
               </Select>
             </FormControl>
-            <FormHelperText required>Select a Sector</FormHelperText>
+            <FormHelperText required>Select a Sector*</FormHelperText>
             <br />
             <FormGroup>
               <FormControlLabel
                 control={
                   <Checkbox required name="isAgreed" onChange={handleChange} />
                 }
-                label="Agree to terms and Conditions"
+                label="Agree to terms and Conditions*"
               />
             </FormGroup>
             <Button type="submit" variant="contained">
@@ -91,7 +91,7 @@ const Form = ({inputs, handleChange, formSubmit}) => {
         </form>
       </Box>
     </>
-  )
-}
+  );
+};
 
-export default Form
+export default Form;
