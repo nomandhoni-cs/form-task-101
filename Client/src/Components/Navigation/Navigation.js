@@ -13,7 +13,7 @@ const Navigation = () => {
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">
         <Toolbar>
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontWeight: 500 }}>
+          <Typography variant="h6" component="div" sx={{ flexGrow: 1, fontWeight: 600 }}>
             Form App
           </Typography>
           <Button sx={{marginRight: "1rem"}} color='inherit' component={Link} startIcon={<HomeRoundedIcon />}to="/">Home</Button>

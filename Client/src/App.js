@@ -3,15 +3,18 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Components/Home/Home";
 import SharedLayout from "./Components/SharedLayout/SharedLayout";
 import Users from "./Components/Users/Users";
-
+import Alert from "@mui/material/Alert";
+import Stack from "@mui/material/Stack";
 function App() {
   const [inputs, setInputs] = React.useState({
     name: "",
     email: "",
     sector: "",
     isAgreed: false,
+    isFormSubmitted: false,
   });
   const handleChange = (event) => {
+    inputs.isFormSubmitted = false;
     // handle change for all inputs and add sector name to inputs
     const { name, value, checked } = event.target;
     if (name === "isAgreed") {
@@ -22,6 +25,13 @@ function App() {
 
     console.log(inputs);
   };
+  const successMessage = () => {
+    return (
+      <Stack sx={{ width: "100%", marginTop: "1rem" }}>
+        <Alert severity="success" sx={{fontSize: "1rem"}}>Submitted successfully</Alert>
+      </Stack>
+    );
+  };
   const formSubmit = (event) => {
     event.preventDefault();
     console.log("Form Submitted", inputs);
@@ -30,9 +40,9 @@ function App() {
       email: "",
       sector: "",
       isAgreed: false,
+      isFormSubmitted: !inputs.isFormSubmitted,
     };
     setInputs(afterSubmit);
-    alert("Form Submitted Successfully");
   };
   return (
     <>
@@ -46,6 +56,8 @@ function App() {
                   inputs={inputs}
                   handleChange={handleChange}
                   formSubmit={formSubmit}
+                  isFormSubmitted={inputs.isFormSubmitted}
+                  successMessage={successMessage}
                 />
               }
             />

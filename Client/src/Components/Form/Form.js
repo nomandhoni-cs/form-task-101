@@ -9,7 +9,8 @@ import Checkbox from "@mui/material/Checkbox";
 import MenuItem from "@mui/material/MenuItem";
 import FormHelperText from "@mui/material/FormHelperText";
 import { Button, FormGroup, InputLabel } from "@mui/material";
-const Form = ({ inputs, handleChange, formSubmit }) => {
+import SendRoundedIcon from '@mui/icons-material/SendRounded';
+const Form = ({ inputs, handleChange, formSubmit, successMessage, isFormSubmitted }) => {
   return (
     <>
       <Box
@@ -22,7 +23,7 @@ const Form = ({ inputs, handleChange, formSubmit }) => {
           alignItems: "center",
           margin: "auto",
           marginTop: "7%",
-          border: "1px solid purple",
+          border: "1px solid #1976d2",
           padding: "20px",
           borderRadius: "10px",
         }}
@@ -84,11 +85,14 @@ const Form = ({ inputs, handleChange, formSubmit }) => {
                 label="Agree to terms and Conditions*"
               />
             </FormGroup>
-            <Button type="submit" variant="contained">
+            <Button type="submit" variant="contained" endIcon={<SendRoundedIcon />}>
               Submit
             </Button>
           </FormControl>
         </form>
+        {
+            isFormSubmitted ? successMessage() : null
+        }
       </Box>
     </>
   );
