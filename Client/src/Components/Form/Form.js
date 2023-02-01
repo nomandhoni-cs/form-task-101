@@ -63,6 +63,7 @@ const Form = ({ inputs, handleChange, formSubmit, successMessage, isFormSubmitte
                 displayEmpty
                 value={inputs.sector}
                 onChange={handleChange}
+                
               >
                 {selectors.map((selector) => (
                   <MenuItem
@@ -75,8 +76,7 @@ const Form = ({ inputs, handleChange, formSubmit, successMessage, isFormSubmitte
                 ))}
               </Select>
             </FormControl>
-            <FormHelperText required>Select a Sector*</FormHelperText>
-            <br />
+            <FormHelperText sx={{ marginBottom: "7px" }} required>Select a Sector*</FormHelperText>
             <FormGroup>
               <FormControlLabel
                 control={
