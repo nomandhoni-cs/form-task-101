@@ -9,13 +9,19 @@ import Checkbox from "@mui/material/Checkbox";
 import MenuItem from "@mui/material/MenuItem";
 import FormHelperText from "@mui/material/FormHelperText";
 import { Button, FormGroup, InputLabel } from "@mui/material";
-import SendRoundedIcon from '@mui/icons-material/SendRounded';
-const Form = ({ inputs, handleChange, formSubmit, successMessage, isFormSubmitted }) => {
+import SendRoundedIcon from "@mui/icons-material/SendRounded";
+const Form = ({
+  inputs,
+  handleChange,
+  handleFormSubmit,
+  successMessage,
+  isFormSubmitted,
+}) => {
   return (
     <>
       <Box
         sx={{
-          width: "80%",
+          width: "96%",
           maxWidth: "600px",
           display: "flex",
           flexDirection: "column",
@@ -23,12 +29,16 @@ const Form = ({ inputs, handleChange, formSubmit, successMessage, isFormSubmitte
           alignItems: "center",
           margin: "auto",
           marginTop: "7%",
-          border: "1px solid #1976d2",
+          border: "2px solid #1976d2",
           padding: "20px",
           borderRadius: "10px",
         }}
       >
-        <form style={{ width: "100%" }} action="" onSubmit={formSubmit}>
+        <h2 style={{ color: "#1976d2", marginTop: "-0.1rem" }}>User Form</h2>
+        {/* {
+          successMessage()
+        } */}
+        <form style={{ width: "100%" }} action="" onSubmit={handleFormSubmit}>
           <FormControl fullWidth>
             <TextField
               required
@@ -63,10 +73,15 @@ const Form = ({ inputs, handleChange, formSubmit, successMessage, isFormSubmitte
                 displayEmpty
                 value={inputs.sector}
                 onChange={handleChange}
-                
               >
                 {selectors.map((selector) => (
                   <MenuItem
+                    sx={{
+                      borderRadius: "10px",
+                      ":hover": { backgroundColor: "#1976d2", color: "#fff" },
+                      marginLeft: "2%",
+                      marginRight: "2%",
+                    }}
                     key={selector.id}
                     value={selector.value}
                     name={selector.text}
@@ -76,7 +91,9 @@ const Form = ({ inputs, handleChange, formSubmit, successMessage, isFormSubmitte
                 ))}
               </Select>
             </FormControl>
-            <FormHelperText sx={{ marginBottom: "7px" }} required>Select a Sector*</FormHelperText>
+            <FormHelperText sx={{ marginBottom: "7px" }} required>
+              Select a Sector*
+            </FormHelperText>
             <FormGroup>
               <FormControlLabel
                 control={
@@ -85,14 +102,26 @@ const Form = ({ inputs, handleChange, formSubmit, successMessage, isFormSubmitte
                 label="Agree to terms and Conditions*"
               />
             </FormGroup>
-            <Button type="submit" variant="contained" endIcon={<SendRoundedIcon />}>
+            <Button
+              sx={{
+                "&:hover": {
+                  border: "2px solid #1976d2",
+                  backgroundColor: "#fff",
+                  color: "#1976d2",
+                },
+                padding: "0.5rem 1rem",
+                fontWeight: 600,
+                textTransform: "capitalize",
+              }}
+              type="submit"
+              variant="contained"
+              endIcon={<SendRoundedIcon />}
+            >
               Submit
             </Button>
           </FormControl>
         </form>
-        {
-            isFormSubmitted ? successMessage() : null
-        }
+        {isFormSubmitted ? successMessage() : null}
       </Box>
     </>
   );

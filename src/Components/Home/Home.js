@@ -1,12 +1,12 @@
 import Form from "../Form/Form";
 
-const Home = ({ inputs, handleChange, formSubmit, isFormSubmitted, successMessage }) => {
+const Home = ({ inputs, handleChange, handleFormSubmit, isFormSubmitted, successMessage }) => {
   return (
     <>
       <Form
         inputs={inputs}
         handleChange={handleChange}
-        formSubmit={formSubmit}
+        handleFormSubmit={handleFormSubmit}
         isFormSubmitted={isFormSubmitted}
         successMessage={successMessage}
       />

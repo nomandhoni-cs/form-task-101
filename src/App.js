@@ -5,7 +5,11 @@ import SharedLayout from "./Components/SharedLayout/SharedLayout";
 import Users from "./Components/Users/Users";
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
+import axios from "axios";
 function App() {
+  // Users state
+  const [users, setUsers] = React.useState([]);
+  // Form inputs state
   const [inputs, setInputs] = React.useState({
     name: "",
     email: "",
@@ -13,6 +17,7 @@ function App() {
     isAgreed: false,
     isFormSubmitted: false,
   });
+  // Handle change for all inputs
   const handleChange = (event) => {
     inputs.isFormSubmitted = false;
     // handle change for all inputs and add sector name to inputs
@@ -22,27 +27,48 @@ function App() {
     } else {
       setInputs((prev) => ({ ...prev, [name]: value }));
     }
-
-    console.log(inputs);
+    // console.log(inputs);
   };
+  // Success message after form submit
   const successMessage = () => {
     return (
       <Stack sx={{ width: "100%", marginTop: "1rem" }}>
-        <Alert severity="success" sx={{fontSize: "1rem"}}>Submitted successfully</Alert>
+        <Alert severity="success" sx={{ fontSize: "1rem" }}>
+          Submitted successfully
+        </Alert>
       </Stack>
     );
   };
-  const formSubmit = (event) => {
+  // Form submit handler
+  const handleFormSubmit = (event) => {
     event.preventDefault();
-    console.log("Form Submitted", inputs);
-    const afterSubmit = {
-      name: "",
-      email: "",
-      sector: "",
-      isAgreed: false,
-      isFormSubmitted: !inputs.isFormSubmitted,
-    };
-    setInputs(afterSubmit);
+    // Validate Full Name and email with regex and compare in one line and give alert
+    const nameRegex = /^[a-zA-Z ]{2,30}$/;
+    const emailRegex = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/;
+    if (
+      !nameRegex.test(inputs.name) ||
+      !emailRegex.test(inputs.email) ||
+      inputs.isAgreed === false
+    ) {
+      alert("Please fill the form correctly");
+    } else {
+      // Axios post request
+      axios
+        .post("https://form-backend.vercel.app/users", inputs)
+        .then((res) => {
+          console.log("Form Submitted", res.data);
+          const afterSubmit = {
+            name: "",
+            email: "",
+            sector: "",
+            isFormSubmitted: !inputs.isFormSubmitted,
+          };
+          setInputs(afterSubmit);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
   };
   return (
     <>
@@ -55,13 +81,13 @@ function App() {
                 <Home
                   inputs={inputs}
                   handleChange={handleChange}
-                  formSubmit={formSubmit}
+                  handleFormSubmit={handleFormSubmit}
                   isFormSubmitted={inputs.isFormSubmitted}
                   successMessage={successMessage}
                 />
               }
             />
-            <Route path="/users" element={<Users />} />
+            <Route path="/users" element={<Users users={users} setUsers={setUsers} />} />
             <Route path="*" element={<h1>404 Not Found</h1>} />
           </Route>
         </Routes>
