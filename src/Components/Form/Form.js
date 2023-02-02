@@ -35,9 +35,6 @@ const Form = ({
         }}
       >
         <h2 style={{ color: "#1976d2", marginTop: "-0.1rem" }}>User Form</h2>
-        {/* {
-          successMessage()
-        } */}
         <form style={{ width: "100%" }} action="" onSubmit={handleFormSubmit}>
           <FormControl fullWidth>
             <TextField

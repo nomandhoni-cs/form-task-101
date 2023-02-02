@@ -11,6 +11,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Button } from "@mui/material";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 const Users = ({ users, setUsers }) => {
   //Get users from the server with axios
@@ -39,6 +40,12 @@ const Users = ({ users, setUsers }) => {
       });
   };
 
+  // Handle Edit User
+  const Navigation = useNavigate();
+  const handleEdit = (id) => {
+    Navigation(`/user/${id}`);
+  };
+
   // Table heading style
   const tableHeadingStyle = {
     fontWeight: "600",
@@ -50,10 +57,18 @@ const Users = ({ users, setUsers }) => {
         <TableHead>
           <TableRow>
             <TableCell sx={tableHeadingStyle}>Name</TableCell>
-            <TableCell sx={tableHeadingStyle} align="right">Email</TableCell>
-            <TableCell sx={tableHeadingStyle} align="right">Sector</TableCell>
-            <TableCell sx={tableHeadingStyle} align="right">Terms</TableCell>
-            <TableCell sx={tableHeadingStyle} align="center">Control</TableCell>
+            <TableCell sx={tableHeadingStyle} align="right">
+              Email
+            </TableCell>
+            <TableCell sx={tableHeadingStyle} align="right">
+              Sector
+            </TableCell>
+            <TableCell sx={tableHeadingStyle} align="right">
+              Terms
+            </TableCell>
+            <TableCell sx={tableHeadingStyle} align="center">
+              Control
+            </TableCell>
           </TableRow>
         </TableHead>
         <TableBody>
@@ -62,9 +77,11 @@ const Users = ({ users, setUsers }) => {
               key={user._id}
               sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
             >
-              <TableCell component="th" scope="row" sx={{ fontWeight: "600",
-            fontSize: "0.8rem"
-            }}>
+              <TableCell
+                component="th"
+                scope="row"
+                sx={{ fontWeight: "600", fontSize: "0.8rem" }}
+              >
                 {user.name}
               </TableCell>
               <TableCell align="right">{user.email}</TableCell>
@@ -81,8 +98,7 @@ const Users = ({ users, setUsers }) => {
                 <Button
                   variant="outlined"
                   // Use Routing to edit user
-                  // onClick={() => handleEdit(user._id)}
-                  
+                  onClick={() => handleEdit(user._id)}
                   endIcon={<BorderColorRoundedIcon />}
                   sx={{
                     margin: "0 0.5rem",
@@ -96,7 +112,7 @@ const Users = ({ users, setUsers }) => {
                     },
                     fontWeight: "700",
                     textTransform: "capitalize",
-                    fontSize: "0.75rem"
+                    fontSize: "0.75rem",
                   }}
                 >
                   Edit

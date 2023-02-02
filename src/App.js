@@ -6,6 +6,7 @@ import Users from "./Components/Users/Users";
 import Alert from "@mui/material/Alert";
 import Stack from "@mui/material/Stack";
 import axios from "axios";
+import UpdateUser from "./Components/UpdateUser/UpdateUser";
 function App() {
   // Users state
   const [users, setUsers] = React.useState([]);
@@ -45,10 +46,7 @@ function App() {
     // Validate Full Name and email with regex and compare in one line and give alert
     const nameRegex = /^[a-zA-Z ]{2,30}$/;
     const emailRegex = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/;
-    if (
-      !nameRegex.test(inputs.name) ||
-      !emailRegex.test(inputs.email)
-    ) {
+    if (!nameRegex.test(inputs.name) || !emailRegex.test(inputs.email)) {
       alert("Please fill the form correctly");
     } else {
       // Axios post request
@@ -87,7 +85,22 @@ function App() {
                 />
               }
             />
-            <Route path="/users" element={<Users users={users} setUsers={setUsers} />} />
+            <Route
+              path="/users"
+              element={<Users users={users} setUsers={setUsers} />}
+            />
+            <Route
+              path="/user/:id"
+              element={
+                <UpdateUser
+                  inputs={inputs}
+                  handleChange={handleChange}
+                  isFormSubmitted={inputs.isFormSubmitted}
+                  successMessage={successMessage}
+                  setInputs={setInputs}
+                />
+              }
+            />
             <Route path="*" element={<h1>404 Not Found</h1>} />
           </Route>
         </Routes>
