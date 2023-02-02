@@ -51,7 +51,7 @@ const UpdateUser = ({
         inputs={inputs}
         handleChange={handleChange}
         handleFormSubmit={handleFormSubmit}
-        isFormSubmitted={inputs.isFormSubmitted}
+        isFormSubmitted={isFormSubmitted}
         successMessage={successMessage}
       />
     </>
