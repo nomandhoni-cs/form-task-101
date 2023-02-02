@@ -35,7 +35,7 @@ const UpdateUser = ({
                 name: "",
                 email: "",
                 sector: "",
-                isAgreed: true,
+                isAgreed: false,
                 isFormSubmitted: !inputs.isFormSubmitted,
             };
             setInputs(afterSubmit);
