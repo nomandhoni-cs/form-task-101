@@ -94,7 +94,12 @@ const Form = ({
             <FormGroup>
               <FormControlLabel
                 control={
-                  <Checkbox required name="isAgreed" onChange={handleChange} />
+                  <Checkbox
+                    checked={inputs.isAgreed}
+                    required
+                    name="isAgreed"
+                    onChange={handleChange}
+                  />
                 }
                 label="Agree to terms and Conditions*"
               />
