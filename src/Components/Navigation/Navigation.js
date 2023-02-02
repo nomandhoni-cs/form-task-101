@@ -8,7 +8,6 @@ import { Link } from "react-router-dom";
 import HomeRoundedIcon from "@mui/icons-material/HomeRounded";
 import PeopleRoundedIcon from "@mui/icons-material/PeopleRounded";
 const Navigation = () => {
-  console.log("Logged from Navigation");
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static">

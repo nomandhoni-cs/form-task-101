@@ -47,8 +47,7 @@ function App() {
     const emailRegex = /^[a-zA-Z0-9+_.-]+@[a-zA-Z0-9.-]+$/;
     if (
       !nameRegex.test(inputs.name) ||
-      !emailRegex.test(inputs.email) ||
-      inputs.isAgreed === false
+      !emailRegex.test(inputs.email)
     ) {
       alert("Please fill the form correctly");
     } else {
@@ -61,6 +60,7 @@ function App() {
             name: "",
             email: "",
             sector: "",
+            isAgreed: true,
             isFormSubmitted: !inputs.isFormSubmitted,
           };
           setInputs(afterSubmit);
